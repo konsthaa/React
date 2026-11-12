@@ -7,14 +7,14 @@ const SingleView = (props) => {
     // - use img tag for displaying images
     // - use video tag for displaying videos
     <dialog open onClick={() => setItem(null)}>
-      <h3>(item.title)</h3>
+      <h3>{item.title}</h3>
       {item.media_type.startsWith('image') ? (
-      <img>src={item.filename} alt={item.description} </img>
-       ) : (
-      <video controls>
-        <source src={item.filename} />
-      </video>
-    )}
+        <img src={item.filename} alt={item.description} />
+      ) : (
+        <video controls>
+          <source src={item.filename} />
+        </video>
+      )}
       <p>{item.description}</p>
     </dialog>
   );
