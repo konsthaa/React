@@ -4,7 +4,7 @@ const Layout = () => {
   return (
     <>
       <header>
-        <h1>My super media app</h1>
+        <h1>My Media app</h1>
         <nav>
           <ul>
             <li>
@@ -16,6 +16,9 @@ const Layout = () => {
             <li>
               <Link to="/upload">Upload</Link>
             </li>
+              <li>
+                <Link to="/demo">Demo</Link>
+              </li>
           </ul>
         </nav>
       </header>
@@ -23,7 +26,7 @@ const Layout = () => {
         <Outlet />
       </main>
       <footer>
-        <p>&copy; teacher 2026</p>
+        <p>&copy; student 2026</p>
       </footer>
     </>
   );
