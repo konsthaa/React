@@ -5,6 +5,7 @@ import SingleView from '../components/SingleView';
 // import TempCounter from './TempCounter';
 
 const MEDIA_API = import.meta.env.VITE_MEDIA_API;
+const AUTH_API = import.meta.env.VITE_AUTH_API;
 
 const Home = () => {
   const [selectedItem, setSelectedItem] = useState(null);
@@ -13,9 +14,22 @@ const Home = () => {
 
   useEffect(() => {
     const getMedia = async () => {
-      // haetaan ensin pelkkä metadata
-      const json = await fetchData('test.json');
-      setMediaArray(json);
+      try {
+        const media = await fetchData.fetchData(`${MEDIA_API}/media`);
+
+        const mediaWithUsers = await Promise.all(
+          media.map(async (item) => {
+            const user = await fetchData.fetchData(
+              `${AUTH_API}/users/${item.user_id}`,
+            );
+            return {...item, username: user.username};
+          }),
+        );
+
+        setMediaArray(mediaWithUsers);
+      } catch (error) {
+        console.error('Failed to fetch media:', error);
+      }
     };
     getMedia();
   }, []);
@@ -34,6 +48,8 @@ const Home = () => {
             <th>Created</th>
             <th>Size</th>
             <th>Type</th>
+            <th>Owner</th>
+            <th>Info</th>
           </tr>
         </thead>
         <tbody>

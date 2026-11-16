@@ -8,6 +8,8 @@ const SingleView = (props) => {
     // - use video tag for displaying videos
     <dialog open onClick={() => setItem(null)}>
       <h3>{item.title}</h3>
+      <p>{item.description}</p>
+      <p>Owner: {item.username}</p>
       {item.media_type.startsWith('image') ? (
         <img src={item.filename} alt={item.description} />
       ) : (
@@ -15,7 +17,6 @@ const SingleView = (props) => {
           <source src={item.filename} />
         </video>
       )}
-      <p>{item.description}</p>
     </dialog>
   );
 };

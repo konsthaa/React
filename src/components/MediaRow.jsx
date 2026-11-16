@@ -1,8 +1,8 @@
 import {Link} from 'react-router';
 
-const MediaRow = ({item}) => {
+const MediaRow = ({item, setItem}) => {
   return (
-    <tr>
+    <tr onClick={() => setItem(item)}>
       <td>
         <img src={item.thumbnail} alt={item.title} />
       </td>
@@ -11,11 +11,8 @@ const MediaRow = ({item}) => {
       <td>{new Date(item.created_at).toLocaleString('fi-FI')}</td>
       <td>{item.filesize}</td>
       <td>{item.media_type}</td>
-      <td>
-        <Link to="/single" state={item}>
-          Display
-        </Link>{' '}
-      </td>
+      <td>{item.username}</td>
+      <td><Link to="/single" state={item}>Display</Link> </td>
     </tr>
   );
 };

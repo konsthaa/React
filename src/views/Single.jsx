@@ -1,5 +1,6 @@
 import {useLocation, useNavigate} from 'react-router';
 
+
 const Single = () => {
   const navigate = useNavigate();
   const {state} = useLocation();
@@ -10,6 +11,7 @@ const Single = () => {
     <>
       <h2>Single media file</h2>
       <h3>{item.title}</h3>
+      <p>Owner: {item.username}</p>
       {item.media_type.startsWith('image') ? (
         <img src={item.filename} alt={item.description || item.title} />
       ) : (

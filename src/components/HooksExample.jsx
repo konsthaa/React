@@ -9,7 +9,7 @@ const HooksExample = () => {
     testElement.current?.style.setProperty('color', `rgb(${count * 5}, 0, 0)`);
   }, [count]); // Only re-run the effect if count changes
 
-  return {
+  return (
     <div ref={testElement}>
       <p>You clicked {count} times</p>
       <button id="btn" onClick={() => setCount(count + 1)}>
