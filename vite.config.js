@@ -4,5 +4,5 @@ import { defineConfig } from 'vite'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/~konsthaa/React/week4/', //<-- tämän voi laittaa kommentille kehityksen ajaksi ja tilalle laittaa base: './.
+  base: '/~konsthaa/React/routing/', //<-- tämän voi laittaa kommentille kehityksen ajaksi ja tilalle laittaa base: './.
 })
