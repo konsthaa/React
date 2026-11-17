@@ -4,5 +4,5 @@ import { defineConfig } from 'vite'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/~konsthaa/React/hooks/', //<-- users.metropoliassa oleva kansio
+  base: '/~konsthaa/React/custom-hooks/', //<-- users.metropoliassa oleva kansio
 })
