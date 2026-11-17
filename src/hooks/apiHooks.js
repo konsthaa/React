@@ -1,6 +1,6 @@
 // KATSO MATIN GITHUB VIIMEISIN PUSH. SIELTÄ LÖYTYY TÄMÄ TEHTÄVÄ.
 import {useState, useEffect} from 'react';
-import {fetchData} from '../utils/fetchData';
+import fetchData from '../utils/fetchData';
 
 const MEDIA_API = import.meta.env.VITE_MEDIA_API;
 const AUTH_API = import.meta.env.VITE_AUTH_API;
@@ -14,22 +14,20 @@ const useMedia = () => {
   const [mediaArray, setMediaArray] = useState([]);
   useEffect(() => {
     const getMedia = async () => {
-      // 1. haetaan ensin pelkkä mediadata
-      const mediaFiles = await fetchData(MEDIA_API + '/media');
-      // 2. lisätään jokaiselle mediatiedostolle username ominaisuus hakemalla
-      // fetchillä auth apista jokaisen mediatiedoston omistaja user_id:n perusteella
-      // yksi kerrallaan. Kun kaikki pyynnöt ovat valmistuneet, promise.all() kaikkien pyyntöjen
-      // tulokset yhtenä taulukkona
-      const mediaFilesWithUsernames = await Promise.all(
-        mediaFiles.map(async (mediaFile) => {
-          const user = await fetchData(
-            `${AUTH_API}/users/${mediaFile.user_id}`,
-          );
-          return {...mediaFile, username: user.username};
-        }),
-      );
-      // 3. asetaan datat stateen vasta kaikkien http-pyyntöjen onnistuttua
-      setMediaArray(mediaFilesWithUsernames);
+      try {
+        const mediaFiles = await fetchData(`${MEDIA_API}/media`);
+        const mediaFilesWithUsernames = await Promise.all(
+          mediaFiles.map(async (mediaFile) => {
+            const user = await fetchData(
+              `${AUTH_API}/users/${mediaFile.user_id}`,
+            );
+            return {...mediaFile, username: user.username};
+          }),
+        );
+        setMediaArray(mediaFilesWithUsernames);
+      } catch (error) {
+        console.error('Failed to fetch media:', error);
+      }
     };
     getMedia();
   }, []);

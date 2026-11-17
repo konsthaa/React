@@ -1,14 +1,9 @@
-import {useState} from 'react';
 import MediaRow from '../components/MediaRow';
-import SingleView from '../components/SingleView';
 import {useMedia} from '../hooks/apiHooks';
 
 const Home = () => {
-  const [selectedItem, setSelectedItem] = useState(null);
-  // ensimmäisessä renderöinnissä dataa ei ole vielä haettu
-  // siksi tyhjä array
   const {mediaArray} = useMedia();
-  //console.log(mediaArray);
+  console.log(mediaArray);
 
   return (
     <>
@@ -28,17 +23,10 @@ const Home = () => {
         </thead>
         <tbody>
           {mediaArray.map((item) => (
-            <MediaRow
-              key={item.media_id}
-              item={item}
-              setItem={setSelectedItem}
-            />
+            <MediaRow key={item.media_id} item={item} />
           ))}
         </tbody>
       </table>
-      {selectedItem && (
-        <SingleView item={selectedItem} setItem={setSelectedItem} />
-      )}
     </>
   );
 };

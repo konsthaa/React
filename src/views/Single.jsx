@@ -1,47 +1,45 @@
-import {useLocation, useNavigate} from 'react-router';
+import {Link, useLocation, useNavigate} from 'react-router';
 import {useUser} from '../hooks/apiHooks';
 import {useState} from 'react';
 
 const Single = () => {
-  //const {state} = useLocation();
-  //const item = state;
-  // haetaa erikseen lisädataa omistajasta, kun sen käyttäjänimeä klikataan käyttäen
-  // useUser() api hookkia.
   const {getUserInformation} = useUser();
   const [owner, setOwner] = useState(null);
-
-  const location = useLocation();
-  const item = location.state;
-  //console.log('Location', location);
-  //console.log('Location state', location.state);
   const navigate = useNavigate();
+  const item = useLocation().state;
+
+  if (!item) {
+    return (
+      <>
+        <h2>Media item unavailable</h2>
+        <Link to="/">Back to media</Link>
+      </>
+    );
+  }
 
   const getUser = async () => {
-    const user = await getUserInformation(item.user_id);
-    setOwner(user);
+    try {
+      const user = await getUserInformation(item.user_id);
+      setOwner(user);
+    } catch (error) {
+      console.error('Failed to fetch user information:', error);
+    }
   };
 
   return (
     <>
       <h2>Single media file</h2>
       <h3>{item.title}</h3>
-      {/* TODO: add all media file details and video/image player here */}
+      <p>Owner: {item.username}</p>
       {item.media_type.startsWith('image') ? (
-        <img src={item.filename} alt={item.description} />
+        <img src={item.filename} alt={item.description || item.title} />
       ) : (
         <video controls>
-          <source src={item.filename} />
+          <source src={item.filename} type={item.media_type} />
         </video>
       )}
       <p>{item.description}</p>
-
-      <h4
-        onClick={() => {
-          getUser();
-        }}
-      >
-        Owner: {item.username}
-      </h4>
+      <button onClick={getUser}>Get owner information</button>
       {owner && (
         <p>
           Email: {owner.email}, User level: {owner.level_name}
