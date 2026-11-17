@@ -1,27 +1,21 @@
 import MediaRow from '../components/MediaRow';
 import {useState, useEffect} from 'react';
 import fetchData from '../utils/fetchData';
-import SingleView from '../components/SingleView';
-// import TempCounter from './TempCounter';
 
 const MEDIA_API = import.meta.env.VITE_MEDIA_API;
 const AUTH_API = import.meta.env.VITE_AUTH_API;
 
 const Home = () => {
-  const [selectedItem, setSelectedItem] = useState(null);
-
   const [mediaArray, setMediaArray] = useState([]);
 
   useEffect(() => {
     const getMedia = async () => {
       try {
-        const media = await fetchData.fetchData(`${MEDIA_API}/media`);
+        const media = await fetchData(`${MEDIA_API}/media`);
 
         const mediaWithUsers = await Promise.all(
           media.map(async (item) => {
-            const user = await fetchData.fetchData(
-              `${AUTH_API}/users/${item.user_id}`,
-            );
+            const user = await fetchData(`${AUTH_API}/users/${item.user_id}`);
             return {...item, username: user.username};
           }),
         );
@@ -54,17 +48,10 @@ const Home = () => {
         </thead>
         <tbody>
           {mediaArray.map((item) => (
-            <MediaRow
-              key={item.media_id}
-              item={item}
-              setItem={setSelectedItem}
-            />
+            <MediaRow key={item.media_id} item={item} />
           ))}
         </tbody>
       </table>
-      {selectedItem && (
-        <SingleView item={selectedItem} setItem={setSelectedItem} />
-      )}
     </>
   );
 };

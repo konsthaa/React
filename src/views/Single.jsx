@@ -1,11 +1,17 @@
-import {useLocation, useNavigate} from 'react-router';
-
+import {Link, useLocation, useNavigate} from 'react-router';
 
 const Single = () => {
   const navigate = useNavigate();
-  const {state} = useLocation();
-  const item = state;
+  const item = useLocation().state;
 
+  if (!item) {
+    return (
+      <>
+        <h2>Media item unavailable</h2>
+        <Link to="/">Back to media</Link>
+      </>
+    );
+  }
 
   return (
     <>

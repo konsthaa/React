@@ -1,8 +1,8 @@
 import {Link} from 'react-router';
 
-const MediaRow = ({item, setItem}) => {
+const MediaRow = ({item}) => {
   return (
-    <tr onClick={() => setItem(item)}>
+    <tr>
       <td>
         <img src={item.thumbnail} alt={item.title} />
       </td>
