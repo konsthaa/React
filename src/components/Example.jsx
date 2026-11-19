@@ -62,4 +62,4 @@ const Example = () => {
 };
 
 
-export default Hooksexample;
+export default Example;
