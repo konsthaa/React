@@ -2,7 +2,7 @@ import {useUser} from '../hooks/apiHooks';
 import useForm from '../hooks/formHooks';
 
 const RegisterForm = ({setDisplayLogin}) => {
-  const {postRegistration} = useUser();
+  const {postUser} = useUser();
 
   const initValues = {
     username: '',
@@ -11,10 +11,8 @@ const RegisterForm = ({setDisplayLogin}) => {
   };
 
   const doRegister = async (formData) => {
-    console.log('HOOKIN palauttama formdata', formData);
     try {
-      const result = await postRegistration(formData);
-      console.log('registration result', result);
+      const result = await postUser(formData);
       alert('Registration successful, ' + result.message);
       setDisplayLogin(true);
     } catch (error) {

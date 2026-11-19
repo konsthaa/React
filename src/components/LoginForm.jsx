@@ -12,12 +12,10 @@ const LoginForm = () => {
   };
 
   const doLogin = async (formData) => {
-    console.log('HOOKIN palauttama formdata', formData);
     // TODO: add login functionalities here
     // use postlogin funktiota ja tee kutsu rajapintaan
     try {
       const userInfo = await postlogin(formData);
-      console.log(userInfo);
       localStorage.setItem('token', userInfo.token);
       navigate('/');
     } catch (error) {
