@@ -6,11 +6,10 @@ const Example = () => {
 
   console.log('Component rendered');
 
-
   // Tämä ei triggeröi uudelleen renderöintiä
   //const addWithoutState = () => {
-    //traditionalCount++;
-    //console.log(traditionalCount);
+  //traditionalCount++;
+  //console.log(traditionalCount);
   //};
 
   const addWithState = () => {
@@ -21,14 +20,13 @@ const Example = () => {
   // 1. Ilman riippuvuustaulukkoa
   // useEffect(fn)
   useEffect(() => {
-    console.log('UseEffect triggered')
-  })
-
+    console.log('UseEffect triggered');
+  });
 
   // 2. Komponentin mount-vaiheessa
   // useEffect(fn, [])
   useEffect(() => {
-    console.log('UseEffect mount triggered')
+    console.log('UseEffect mount triggered');
   }, [count]);
 
   // 3. Mount vaiheessa sekä count - arvon muuttuessa
@@ -46,9 +44,6 @@ const Example = () => {
     console.log(inputRef.current);
   };
 
-
-
-
   return (
     <div>
       <p>Count: {count}</p>
@@ -61,5 +56,4 @@ const Example = () => {
   );
 };
 
-
-export default Hooksexample;
+export default Example;

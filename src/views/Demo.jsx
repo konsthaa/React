@@ -1,5 +1,5 @@
-import Example from "../components/Example";
-import HooksExample from "../components/HooksExample";
+import Example from '../components/Example';
+import HooksExample from '../components/HooksExample';
 
 const Demo = () => {
   return (
