@@ -1,4 +1,5 @@
 import {BrowserRouter, Route, Routes} from 'react-router';
+import React from 'react';
 import './App.css';
 import Home from './views/Home';
 import Layout from './components/Layout';
@@ -8,6 +9,9 @@ import Single from './views/Single';
 import Demo from './views/Demo';
 import Login from './views/Login';
 import Logout from './views/Logout';
+import {MyProvider} from './MyContext';
+import ComponentA from './ComponentA';
+import ComponentB from './ComponentB';
 
 const App = () => {
   return (
@@ -26,4 +30,6 @@ const App = () => {
     </BrowserRouter>
   );
 };
+
+
 export default App;

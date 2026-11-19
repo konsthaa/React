@@ -1,9 +1,10 @@
 import {useEffect, useState} from 'react';
 import {useUser} from '../hooks/apiHooks';
+import {useUser} from '../contexts/UserContext';
 
 const Profile = () => {
   const [user, setUser] = useState({});
-  const {getUserByToken} = useUser();
+  const {getUserByToken,} = useUser();
 
   useEffect(() => {
     const getUserInfo = async () => {
