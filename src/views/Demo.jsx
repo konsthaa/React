@@ -1,14 +1,15 @@
-import Hooksexample from "../components/Example";
+import Example from "../components/Example";
+import HooksExample from "../components/HooksExample";
 
 const Demo = () => {
   return (
     <div>
       <h2>Hooks demo</h2>
-      <h3>Hooks example wsk sivuilta</h3>
-      <Hooksexample />
-      </div>
+      <Example />
+      <h3>Hooks Example wsk sivuilta</h3>
+      <HooksExample />
+    </div>
   );
 };
 
-
-export default Demo
+export default Demo;
