@@ -4,7 +4,7 @@ import {useFile} from '../hooks/apiHooks';
 import {useMedia} from '../hooks/apiHooks';
 import { useNavigate } from 'react-router';
 
-/*TEE KOTONA LOPPUUN!! KATSO GITHUB*/
+
 
 const Upload = () => {
   const [file, setFile] = useState(null);

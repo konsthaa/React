@@ -1,14 +1,20 @@
 import {Link, Outlet} from 'react-router';
 import {useUserContext} from '../hooks/contextHooks';
+import {useEffect} from 'react';
 
 const Layout = () => {
-  const {user} = useUserContext();
+  const {user, handleAutoLogin} = useUserContext();
+
+  useEffect(() => {
+    handleAutoLogin();
+  }, []);
 
   return (
     <>
       <header>
         <h1>My Media app</h1>
         <nav>
+          <div>Hei {user?.username ?? 'vierailija'}!</div>
           <ul>
             <li>
               <Link to="/">Home</Link>
