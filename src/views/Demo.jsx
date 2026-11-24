@@ -7,6 +7,7 @@ const Demo = () => {
   return (
     <div>
       <h2>Hooks demo</h2>
+      <button className="bg-pink-950 p-2 hover:bg-violet-600 ">TESTIBUTTON</button>
       <Example />
       <h3>Hooks example wsk sivuilta</h3>
       <HooksExample />

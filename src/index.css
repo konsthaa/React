@@ -1,4 +1,10 @@
-:root {
+@import "tailwindcss";
+/* kannattaa muistaa asentaa Tailwind CSS IntelliSense */
+/*tailwind labit kaikki tekemättä; katso github */
+
+
+@layer base {
+  :root {
   font-family: system-ui, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -12,6 +18,10 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  footer {
+    @apply text-2xl font-thin bg-red-600
+  }
 }
 
 #root {
@@ -21,7 +31,7 @@
 }
 
 /* nav */
-nav ul {
+/*nav ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -142,4 +152,20 @@ button {
   color: white;
   border: none;
   cursor: pointer;
+}
+
+nav .active {
+  background-color: mediumslateblue;
+}
+/*.my-button {
+  background-color: aquamarine;
+  color: black;
+  padding: 18px;
+  border-radius: 18px;
+}
+
+.my-button:hover {
+  background-color: pink;
+}*/
+
 }
